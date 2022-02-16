@@ -1,4 +1,6 @@
 import type { NextPage } from "next";
+import Image from "next/image";
+import ButtonSubscribe from "../components/ButtonSubscribe";
 import { Container, Content } from "../styles/pages/index";
 
 const Home: NextPage = () => {
@@ -17,10 +19,9 @@ const Home: NextPage = () => {
             <span className="highlightInformation">R$ 4,90 por mês</span>
           </p>
 
-          <button>Inscrever agora</button>
+          <ButtonSubscribe />
         </aside>
-
-        <img src="/images/avatar.svg" alt="Imagem que representa o conteúdo do App." />
+        <Image src="/images/avatar.svg" width={640} height={640} className="imagePageHome" alt="Imagem que representa o conteúdo do App." />
       </Content>
     </Container>
   );

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Container, Content } from "../styles/components/HeaderApp";
+import ButtonSingIn from "./ButtonSingIn";
 
 const HeaderApp: React.FC = () => {
   const { route } = useRouter();
@@ -22,7 +23,7 @@ const HeaderApp: React.FC = () => {
           </Link>
         </nav>
 
-        <button className="buttonSingIn">Teste</button>
+        <ButtonSingIn />
       </Content>
     </Container>
   );

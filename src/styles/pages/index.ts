@@ -50,13 +50,11 @@ export const Content = styled.section`
     }
   }
 
-  img {
+  .imagePageHome {
     display: flex;
     align-items: center;
     justify-content: center;
 
     flex: 1;
-    width: 80%;
-    height: 80%;
   }
 `;
