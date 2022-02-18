@@ -1,22 +1,34 @@
 import React from "react";
 
+import { signIn, signOut, useSession } from "next-auth/react";
+
 import { FaGithub } from "react-icons/fa";
 import { VscClose } from "react-icons/vsc";
 
-import { Container } from "../styles/components/ButtonSingIn";
+import { Button } from "../styles/components/ButtonSingIn";
 
 const ButtonSingIn: React.FC = () => {
-  const isUserLogged: boolean = true;
+  const { data } = useSession();
 
-  return isUserLogged ? (
-    <Container type="button">
-      <FaGithub size={28} color={"#04D361"} /> Adair Juneo
+  console.log(data);
+
+  function login() {
+    signIn("github");
+  }
+
+  function logout() {
+    signOut();
+  }
+
+  return data ? (
+    <Button type="button" onClick={() => signOut()} title="Efetuar logout do app.">
+      <FaGithub size={28} color={"#04D361"} /> {data.user?.name}
       <VscClose size={28} color={"#FFFFFF"} />
-    </Container>
+    </Button>
   ) : (
-    <Container type="button">
+    <Button type="button" onClick={() => signIn("github")} title="Efetuar login no app com GitHub.">
       <FaGithub size={28} color={"#EBA417"} /> Login com GitHub
-    </Container>
+    </Button>
   );
 };
 
