@@ -10,16 +10,6 @@ import { Button } from "../styles/components/ButtonSingIn";
 const ButtonSingIn: React.FC = () => {
   const { data } = useSession();
 
-  console.log(data);
-
-  function login() {
-    signIn("github");
-  }
-
-  function logout() {
-    signOut();
-  }
-
   return data ? (
     <Button type="button" onClick={() => signOut()} title="Efetuar logout do app.">
       <FaGithub size={28} color={"#04D361"} /> {data.user?.name}

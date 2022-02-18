@@ -1,10 +1,15 @@
 import React from "react";
 
 import Link from "next/link";
+import Image from "next/image";
+
 import { useRouter } from "next/router";
 
-import { Container, Content } from "../styles/components/HeaderApp";
 import ButtonSingIn from "./ButtonSingIn";
+
+import logo from "../../public/images/logo.svg";
+
+import { Container, Content } from "../styles/components/HeaderApp";
 
 const HeaderApp: React.FC = () => {
   const { route } = useRouter();
@@ -12,7 +17,7 @@ const HeaderApp: React.FC = () => {
   return (
     <Container>
       <Content>
-        <img src="/images/logo.svg" className="imgLogo" alt="Logo do App prisma.news " />
+        <Image src={logo} width={144} height={80} className="imgLogo" alt="Logo do App prisma.news" />
 
         <nav className="menuNavigationApp">
           <Link href="/">

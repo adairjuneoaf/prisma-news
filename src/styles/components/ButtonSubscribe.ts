@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
+export const Button = styled.button`
   width: fit-content;
   height: fit-content;
 
