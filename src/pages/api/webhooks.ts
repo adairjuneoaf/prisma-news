@@ -64,7 +64,7 @@ const webhook = async (req: NextApiRequest, res: NextApiResponse) => {
       }
     }
 
-    res.status(200).json({ ok: true });
+    res.status(200).end("Success");
   } else {
     res.setHeader("Allow", "POST");
     res.status(405).end("Method not allowed");
