@@ -11,6 +11,7 @@ declare global {
       STRIPE_SUCCESS_URL: string;
       GITHUB_CLIENT_SECRET: string;
       STRIPE_PRICE_PRODUCT_KEY: string;
+      STRIPE_WEBHOOK_SECRET_KEY: string;
       NEXT_PUBLIC_STRIPE_PUBLIC_API_KEY: string;
     }
   }
