@@ -1,18 +1,59 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
+import Head from "next/head";
+import { RichText } from "prismic-dom";
+import { ParsedUrlQuery } from "querystring";
 
-const Post: NextPage = () => {
+import getPrismicClient from "../../services/prismic";
+
+import { Container, Content } from "../../styles/pages/posts/[slug]";
+
+interface SlugType extends ParsedUrlQuery {
+  slug: string;
+}
+
+interface PagePostProps {
+  post: { id: string; slug: string; title: string; publishedAt: string; contentPost: string };
+}
+
+const Post: NextPage<PagePostProps> = ({ post }) => {
   return (
-    <>
-      <h1>Teste</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio fuga in delectus, praesentium necessitatibus tempora explicabo quae? Quia totam
-        voluptatibus sapiente veniam assumenda. Omnis tenetur eius, sed commodi maiores quis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-        cupiditate vero quibusdam. Necessitatibus sequi ad distinctio totam nisi dolores quos tempora quod officia. Illum, dolore laborum modi placeat quasi
-        eligendi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores impedit perferendis asperiores quod voluptatum soluta quas totam earum.
-        Eaque veniam delectus temporibus ullam molestiae nisi reprehenderit sunt odit. Magnam, ullam?
-      </p>
-    </>
+    <Container>
+      <Head>
+        <title>prisma.news | {post.title}</title>
+      </Head>
+      <Content>
+        <h1>{post.title}</h1>
+        <section>
+          <time>{post.publishedAt}</time>&nbsp;-&nbsp;<cite>Adair Juneo</cite>
+        </section>
+        <aside dangerouslySetInnerHTML={{ __html: post.contentPost }} />
+      </Content>
+    </Container>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const { slug } = params as SlugType;
+
+  const prismic = getPrismicClient();
+
+  const response = await prismic.getByUID("post", String(slug));
+
+  const post = {
+    id: response.id,
+    slug: response.uid,
+    title: RichText.asText(response.data.title),
+    publishedAt: new Date(response.first_publication_date).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }),
+    contentPost: RichText.asHtml(response.data.content),
+  };
+
+  return {
+    props: { post },
+  };
 };
 
 export default Post;

@@ -17,7 +17,7 @@ export const Content = styled.section`
   align-items: flex-start;
 
   article {
-    width: 70%;
+    max-width: 70%;
     margin: 0 auto;
 
     &:first-child {

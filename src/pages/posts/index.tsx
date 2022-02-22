@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from "next";
+import Head from "next/head";
 
 import Link from "next/link";
 import { RichText } from "prismic-dom";
@@ -23,6 +24,9 @@ interface PostsProps {
 const Posts: NextPage<PostsProps> = ({ listPosts }) => {
   return (
     <Container>
+      <Head>
+        <title>prisma.news | Posts</title>
+      </Head>
       <Content>
         {listPosts.map((post) => (
           <>
@@ -31,7 +35,7 @@ const Posts: NextPage<PostsProps> = ({ listPosts }) => {
                 <time>{post.publishedAt}</time>&nbsp;-&nbsp;<cite>Adair Juneo</cite>
               </section>
               <aside>
-                <Link href={"/posts"}>
+                <Link href={`/posts/${post.slug}`}>
                   <a>{post.title}</a>
                 </Link>
                 <p>{post.previewContentPost}</p>
@@ -84,6 +88,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       listPosts,
     },
+    revalidate: 60 * 60 * 4, // 4 Horas,
   };
 };
 
