@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 import { query } from "faunadb";
 
 import stripe from "../../services/stripe";
-import { fauna } from "../../services/fauna";
+import fauna from "../../services/fauna";
 
 type User = {
   ref: {

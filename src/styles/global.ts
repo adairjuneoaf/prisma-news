@@ -41,6 +41,25 @@ body {
     background: var(--gray-900);
     color: var(--white);
     -webkit-font-smoothing: antialiased;
+    
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+    width: 0.6rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--gray-800);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--gray-300);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    
+  }
 }
 
 body, input, textarea, button{

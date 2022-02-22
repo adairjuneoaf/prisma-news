@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
+import fauna from "../../../services/fauna";
 import { query } from "faunadb";
-import { fauna } from "../../../services/fauna";
 
 interface signInTypes {
   user: {

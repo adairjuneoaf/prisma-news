@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-
 import { Readable } from "stream";
+
 import Stripe from "stripe";
+import saveSubscription from "./_lib/manageSubscription";
+
 import stripe from "../../services/stripe";
-import { saveSubscription } from "./_lib/manageSubscription";
 
 async function buffer(readable: Readable) {
   const chunks = [];
