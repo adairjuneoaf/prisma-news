@@ -99,4 +99,20 @@ span.highlightInformation{
     cursor: not-allowed;
 }
 
+.toastNotificationsStyle{
+    width: fit-content;
+    height: auto;
+
+    cursor: default;
+
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+
+    background-color: var(--gray-300);
+    color: var(--white);
+
+    z-index: 1000;
+}
+
 `;

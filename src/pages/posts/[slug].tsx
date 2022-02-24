@@ -1,4 +1,7 @@
 import { GetServerSideProps, NextPage } from "next";
+import { Session } from "next-auth";
+import { getSession } from "next-auth/react";
+
 import Head from "next/head";
 import { RichText } from "prismic-dom";
 import { ParsedUrlQuery } from "querystring";
@@ -32,12 +35,22 @@ const Post: NextPage<PagePostProps> = ({ post }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params, req }) => {
   const { slug } = params as SlugType;
 
+  const session = await getSession({ req });
   const prismic = getPrismicClient();
 
-  const response = await prismic.getByUID("post", String(slug));
+  if (!session?.subscriptionUser) {
+    return {
+      redirect: {
+        destination: `/posts/preview/${slug}`,
+        permanent: false,
+      },
+    };
+  }
+
+  const response = await prismic.getByUID("post", slug);
 
   const post = {
     id: response.id,

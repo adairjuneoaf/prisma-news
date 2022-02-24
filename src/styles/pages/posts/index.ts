@@ -57,16 +57,15 @@ export const Content = styled.section`
         color: var(--gray-300);
       }
     }
-  }
+    .dividerArticles {
+      width: 100%;
+      height: 2px;
 
-  .dividerArticles {
-    width: 70%;
-    height: 2px;
+      margin: 0 auto;
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
 
-    margin: 0 auto;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-
-    background: var(--gray-800);
+      background: var(--gray-800);
+    }
   }
 `;
