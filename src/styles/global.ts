@@ -23,8 +23,8 @@ export default createGlobalStyle`
 
   --green-500: #04D361;
   
-  --yellow-300: #FFB319;
-  --yellow-500: #EBA417;
+  --yellow-300: #BF4D00;
+  --yellow-500: #FE6701;
 }
 
 html{
